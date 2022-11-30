@@ -50,7 +50,7 @@ def pregunta_02():
     df = pd.read_csv("house-votes-84.csv", sep=",")
 
     # Cree un vector con la variable de respuesta ('party')
-    y = df["party"]
+    y = df["party"].values
 
     # Extraiga las variables de entrada
     X = df.drop("party",axis=1).values
@@ -66,7 +66,7 @@ def pregunta_02():
     
 
     # Cree un un clasificador k-NN con 6 vecinos
-    knn = KNeighborsClassifier(n_neighbors=6)
+    knn = KNeighborsClassifier(n_neighbors=5)
 
     # Entrene el clasificador con el conjunto de entrenamiento
     knn.fit(X, y)
@@ -78,4 +78,4 @@ def pregunta_02():
     from sklearn.metrics import confusion_matrix
 
     # Retorne la matriz de confusión
-    return confusion_matrix(y_true=y, y_pred=y_pred)
+    return confusion_matrix(y, y_pred)
